@@ -1,0 +1,4 @@
+{
+  "designSystem": { "package": "@acme/ui", "entry": "src/index.ts" },
+  "tokens": ["src/tokens/**/*.json", "src/styles/**/*.css"]
+}

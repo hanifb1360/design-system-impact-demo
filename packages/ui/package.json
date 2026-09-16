@@ -1,0 +1,12 @@
+{
+  "name": "@acme/ui",
+  "version": "2.0.0",
+  "type": "module",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./button": { "types": "./dist/button.d.ts", "import": "./dist/button.js" },
+    "./tokens.css": "./src/styles/tokens.css"
+  },
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "peerDependencies": { "react": ">=18" }
+}

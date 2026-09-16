@@ -1,0 +1,8 @@
+{
+  "color": {
+    "primary": { "$type": "color", "$value": "#2457d6" },
+    "critical": { "$type": "color", "$value": "#b71c1c" },
+    "surface": { "$type": "color", "$value": "#ffffff" }
+  },
+  "space": { "md": { "$type": "dimension", "$value": "16px" } }
+}

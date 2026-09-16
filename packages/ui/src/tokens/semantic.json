@@ -1,0 +1,8 @@
+{
+  "color": {
+    "primary": { "$type": "color", "$value": "#2457d6" },
+    "danger": { "$type": "color", "$value": "#c62828" },
+    "surface": { "$type": "color", "$value": "#ffffff" }
+  },
+  "space": { "md": { "$type": "dimension", "$value": "1rem" } }
+}
