@@ -1,0 +1,20 @@
+{
+  "designSystem": { "package": "@acme/ui", "entry": "packages/ui/src/index.ts" },
+  "tokens": ["packages/ui/src/tokens/**/*.json", "packages/ui/src/styles/**/*.css"],
+  "consumers": ["apps/checkout-legacy"],
+  "ownership": { "codeowners": "CODEOWNERS" },
+  "migrations": {
+    "schemaVersion": 1,
+    "componentProps": {
+      "Button": {
+        "tone": {
+          "replacedBy": "variant",
+          "values": { "default": "primary", "critical": "danger" }
+        }
+      }
+    },
+    "tokens": {
+      "--color-critical": { "replacedBy": "--color-danger" }
+    }
+  }
+}

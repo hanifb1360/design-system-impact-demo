@@ -1,0 +1,3 @@
+/apps/checkout-legacy/ @checkout-team @design-systems
+/apps/checkout-migrated/ @checkout-team @design-systems
+/packages/ui/ @design-systems
