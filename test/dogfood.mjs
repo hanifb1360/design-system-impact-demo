@@ -19,6 +19,7 @@ run(impactCli, ['impact', 'artifacts/ui.diff.json', '--format', 'json', '--outpu
 run(impactCli, ['plan', 'artifacts/ui.diff.json', 'artifacts/consumer-impact.json', '--format', 'json', '--output', 'artifacts/migration-plan.json']);
 const currentSnapshot = JSON.parse(await readFile(path.join(root, 'artifacts/ui-v2.snapshot.json'), 'utf8'));
 if (!currentSnapshot.exports.some((item) => item.name === 'Button' && item.importPath === '@acme/ui/button')) throw new Error('Expected @acme/ui/button package export discovery.');
+if (currentSnapshot.tokens['color.danger']?.source?.line !== 4 || currentSnapshot.tokens['color.danger']?.source?.column !== 5) throw new Error('Expected exact JSON token source coordinates.');
 const impacts = JSON.parse(await readFile(path.join(root, 'artifacts/consumer-impact.json'), 'utf8'));
 if (!impacts.diagnostics.some((diagnostic) => diagnostic.code === 'DSI2101' && diagnostic.location?.file === 'apps/barrel-consumer/src/SpreadButton.tsx')) throw new Error('Expected a JSX spread uncertainty diagnostic.');
 if (impacts.impacts.some((impact) => impact.changeId.endsWith('.requiredness') && impact.location.file === 'apps/barrel-consumer/src/SpreadButton.tsx')) throw new Error('A JSX spread must not produce a definite missing-required-prop impact.');
