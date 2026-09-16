@@ -1,0 +1,28 @@
+{
+  "name": "enterprise-design-system-dogfood",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "build": "npm run build --workspace @acme/ui",
+    "typecheck": "tsc --noEmit",
+    "snapshot:v1": "design-system-impact snapshot --root releases/ui-v1 --output ../../artifacts/ui-v1.snapshot.json",
+    "snapshot:v2": "design-system-impact snapshot --root packages/ui --output ../../artifacts/ui-v2.snapshot.json",
+    "impact:diff": "design-system-impact diff artifacts/ui-v1.snapshot.json artifacts/ui-v2.snapshot.json --format json --output artifacts/ui.diff.json",
+    "impact:scan": "design-system-impact impact artifacts/ui.diff.json --format json --output artifacts/consumer-impact.json",
+    "impact:plan": "design-system-impact plan artifacts/ui.diff.json artifacts/consumer-impact.json --format json --output artifacts/migration-plan.json",
+    "impact": "npm run snapshot:v1 && npm run snapshot:v2 && npm run impact:diff && npm run impact:scan && npm run impact:plan",
+    "guard:legacy": "design-system-guard check apps/checkout-legacy/src --config design-system-guard.config.mjs",
+    "guard:migrated": "design-system-guard check apps/checkout-migrated/src --config design-system-guard.config.mjs",
+    "test": "node test/dogfood.mjs"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "design-system-guard": "0.2.0",
+    "design-system-impact": "github:hanifb1360/design-system-impact#3737435",
+    "react": "^19.1.1",
+    "typescript": "^5.9.2"
+  }
+}
