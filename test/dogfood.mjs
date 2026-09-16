@@ -11,6 +11,7 @@ const guardCli = path.join(root, 'node_modules/design-system-guard/dist/cli.mjs'
 const tscCli = path.join(root, 'node_modules/typescript/bin/tsc');
 const run = (script, args, options = {}) => execFileSync(process.execPath, [script, ...args], { cwd: root, stdio: 'inherit', ...options });
 
+for (const name of ['snapshot', 'diff', 'impact', 'migration']) { const schema = JSON.parse(await readFile(path.join(root, `node_modules/design-system-impact/schemas/${name}.schema.json`), 'utf8')); if (schema.properties?.schemaVersion?.const !== 1) throw new Error(`Expected published ${name} schema version 1.`); }
 run(tscCli, ['-p', 'packages/ui/tsconfig.json']);
 run(impactCli, ['snapshot', '--root', 'releases/ui-v1', '--output', '../../artifacts/ui-v1.snapshot.json']);
 run(impactCli, ['snapshot', '--root', 'packages/ui', '--output', '../../artifacts/ui-v2.snapshot.json']);
