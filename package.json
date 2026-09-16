@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
-  "workspaces": ["packages/*", "apps/*"],
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
     "build": "npm run build --workspace @acme/ui",
     "typecheck": "tsc --noEmit",
@@ -21,7 +26,7 @@
   "devDependencies": {
     "@types/react": "^19.1.12",
     "design-system-guard": "0.2.0",
-    "design-system-impact": "github:hanifb1360/design-system-impact#3737435",
+    "design-system-impact": "github:hanifb1360/design-system-impact#6651933",
     "react": "^19.1.1",
     "typescript": "^5.9.2"
   }
