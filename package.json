@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/react": "^19.1.12",
     "design-system-guard": "0.2.0",
-    "design-system-impact": "github:hanifb1360/design-system-impact#6651933",
+    "design-system-impact": "github:hanifb1360/design-system-impact#4605035",
     "react": "^19.1.1",
     "typescript": "^5.9.2"
   }

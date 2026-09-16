@@ -20,9 +20,10 @@ run(impactCli, ['plan', 'artifacts/ui.diff.json', 'artifacts/consumer-impact.jso
 const currentSnapshot = JSON.parse(await readFile(path.join(root, 'artifacts/ui-v2.snapshot.json'), 'utf8'));
 if (!currentSnapshot.exports.some((item) => item.name === 'Button' && item.importPath === '@acme/ui/button')) throw new Error('Expected @acme/ui/button package export discovery.');
 const plan = JSON.parse(await readFile(path.join(root, 'artifacts/migration-plan.json'), 'utf8'));
-const propTask = plan.tasks.find((task) => task.replacement?.to === 'Button.variant="danger"');
-if (!propTask?.automatic) throw new Error('Expected an automatic Button tone-to-variant task.');
-if (!propTask.locations.some((location) => location.owner?.includes('@checkout-team'))) throw new Error('Expected CODEOWNERS attribution for checkout.');
+const propTask = plan.tasks.find((task) => task.replacement?.to === 'Button.variant="danger"' && task.locations.some((location) => location.owner?.includes('@checkout-team')));
+if (!propTask?.automatic) throw new Error('Expected an owned automatic Button tone-to-variant task for checkout.');
+const barrelTask = plan.tasks.find((task) => task.locations.some((location) => location.file === 'apps/barrel-consumer/src/DeleteButton.tsx'));
+if (!barrelTask?.automatic || !barrelTask.locations.some((location) => location.owner?.includes('@platform-team'))) throw new Error('Expected an owned automatic migration through the multi-level barrel.');
 
 const legacy = spawnSync(process.execPath, [guardCli, 'check', 'apps/checkout-legacy/src', '--config', 'design-system-guard.config.mjs', '--json'], { cwd: root, encoding: 'utf8' });
 if (legacy.status !== 1) throw new Error(`Legacy Guard check should exit 1, received ${legacy.status}.\n${legacy.stdout}\n${legacy.stderr}`);

@@ -1,7 +1,7 @@
 {
   "designSystem": { "package": "@acme/ui", "entry": "packages/ui/src/index.ts" },
   "tokens": ["packages/ui/src/tokens/**/*.json", "packages/ui/src/styles/**/*.css"],
-  "consumers": ["apps/checkout-legacy"],
+  "consumers": ["apps/checkout-legacy", "apps/barrel-consumer"],
   "ownership": { "codeowners": "CODEOWNERS" },
   "migrations": {
     "schemaVersion": 1,

@@ -1,0 +1,1 @@
+{ "name": "@acme/barrel-consumer", "version": "1.0.0", "private": true, "type": "module", "dependencies": { "@acme/ui": "*", "react": "^19.1.1" } }
