@@ -1,6 +1,6 @@
-# Enterprise design-system dogfood
+# Design System Impact demo
 
-This standalone repository models an enterprise React design system evolving from `@acme/ui` 1.4 to 2.0, a legacy checkout consumer, and its migrated result.
+This standalone demo repository models an enterprise React design system evolving from `@acme/ui` 1.4 to 2.0, a legacy checkout consumer, and its migrated result.
 
 The workflow is intentionally split between two tools:
 
